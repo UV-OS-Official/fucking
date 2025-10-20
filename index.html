@@ -17,7 +17,7 @@ body {
 h1 {
   font-size: 3.5em;
   margin-bottom: 0.3em;
-  text-shadow: 0 0 20px rgba(0, 140, 255, 0.6);
+  text-shadow: 0 0 25px rgba(0, 140, 255, 0.8);
 }
 p {
   font-size: 1.3em;
@@ -40,7 +40,7 @@ button:hover {
   color: #000;
   box-shadow: 0 0 20px rgba(0, 170, 255, 0.7);
 }
-.popup {
+.popup, .dialog {
   display: none;
   position: fixed;
   top: 0;
@@ -51,7 +51,7 @@ button:hover {
   z-index: 10;
   overflow-y: auto;
 }
-.popup-content {
+.popup-content, .dialog-content {
   background: #0b0b0b;
   color: #fff;
   border-radius: 16px;
@@ -59,8 +59,9 @@ button:hover {
   max-width: 800px;
   margin: 5% auto;
   box-shadow: 0 0 25px rgba(0, 170, 255, 0.4);
+  animation: popupFade 0.3s ease-out;
 }
-.popup-content h2 {
+.popup-content h2, .dialog-content h2 {
   font-size: 2.2em;
   color: #00aaff;
   margin-bottom: 0.5em;
@@ -93,9 +94,6 @@ button:hover {
   from {opacity: 0; transform: scale(0.9);}
   to {opacity: 1; transform: scale(1);}
 }
-.popup-content {
-  animation: popupFade 0.3s ease-out;
-}
 </style>
 </head>
 <body>
@@ -109,7 +107,7 @@ button:hover {
     <h3>A quick disclaimer:</h3>
     <p>This app is not intended to be rude, harmful, or verbally abusive in any way. If you are sensitive to vulgar or profane words (swearing, cursing, etc) do not install this app. We made sure that absolutely no part of this is racial, sexist, homophobic, or discriminating in any other way (we aren't that mean XD). If you aren't sensitive to any of those things, then carry on!</p>
     <h3>How to install:</h3>
-    <p><b>Option 1 (Terminal):</b><br>Download the latest <code>.deb</code> file from the <code>latest/</code> folder and run:<br><code>sudo apt install ./latest/fucking.deb</code></p>
+    <p><b>Option 1 (Terminal):</b><br>Download the latest <code>.deb</code> file from this page and run:<br><code>sudo apt install ./fucking_1.0_all.deb</code></p>
     <p><b>Option 2 (GUI):</b><br>Just double-click the <code>.deb</code> file and use your installer app. It will install Python 3 if needed automatically.</p>
     <h3>How to use:</h3>
     <p>Just type <code>fucking</code> before any command! Works with root too! :D</p>
@@ -118,14 +116,25 @@ button:hover {
   </div>
 </div>
 
+<div class="dialog" id="thanksDialog">
+  <div class="dialog-content">
+    <h2>Thanks for installing :D</h2>
+    <p>You’re officially part of the most disobedient command-line movement ever. Have fun!</p>
+    <div class="close-btn" id="closeThanks">Close</div>
+  </div>
+</div>
+
 <script>
 const popup = document.getElementById("popup");
+const dialog = document.getElementById("thanksDialog");
 document.getElementById("getBtn").onclick = () => popup.style.display = "block";
 document.getElementById("closeBtn").onclick = () => popup.style.display = "none";
 document.getElementById("installBtn").onclick = () => {
-  alert("Thanks for installing :D");
-  window.location.href = "latest/fucking.deb";
+  popup.style.display = "none";
+  dialog.style.display = "block";
+  window.open("fucking_1.0_all.deb", "_blank");
 };
+document.getElementById("closeThanks").onclick = () => dialog.style.display = "none";
 </script>
 </body>
 </html>
