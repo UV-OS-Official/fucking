@@ -1,326 +1,106 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fucking</title>
 <style>
-  /* Layout */
-  :root{
-    --bg:#0f1724; --card:#0b1220; --accent:#d6b85a; --muted:#9aa6b2; --glass: rgba(255,255,255,0.03);
-    --maxw:760px;
-  }
-  html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;}
-  body{
-    background: radial-gradient(circle at 10% 20%, #09101a 0%, var(--bg) 40%), linear-gradient(180deg,#07101a 0%, #05101a 100%);
-    color:#e6eef6;
-    -webkit-font-smoothing:antialiased;
-    display:flex;
-    align-items:flex-start;
-    justify-content:center;
-    padding:48px 16px;
-  }
-
-  .wrap{
-    width:100%;
-    max-width:var(--maxw);
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border-radius:14px;
-    box-shadow:0 10px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
-    padding:36px;
-    position:relative;
-    overflow:hidden;
-  }
-
-  /* Title positioned mid-upper-center */
-  header{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    margin-top:8px;
-    margin-bottom:22px;
-  }
-  h1{
-    margin:0;
-    font-size:44px;
-    letter-spacing:1px;
-    line-height:1;
-    margin-top:6px;
-    font-weight:700;
-    color:var(--accent);
-    text-shadow:0 2px 12px rgba(0,0,0,0.6);
-  }
-  p.lead{
-    margin:14px 0 0;
-    color:var(--muted);
-    text-align:center;
-    max-width:70%;
-  }
-
-  /* CTA */
-  .cta{
-    display:flex;
-    justify-content:center;
-    margin-top:26px;
-  }
-  .btn{
-    background:linear-gradient(180deg,var(--accent), #b98f3b);
-    color:#07121a;
-    border:none;
-    padding:12px 18px;
-    border-radius:10px;
-    font-weight:700;
-    cursor:pointer;
-    box-shadow:0 6px 20px rgba(217,184,92,0.12);
-    transition:transform .08s ease, box-shadow .08s ease;
-  }
-  .btn:active{ transform:translateY(1px); box-shadow:0 4px 12px rgba(17,13,8,0.12); }
-
-  /* Modal */
-  .modal-backdrop{
-    position:fixed; inset:0; background:rgba(2,6,23,0.6); display:none; align-items:center; justify-content:center; z-index:80;
-  }
-  .modal{
-    width:min(900px,94%);
-    max-height:86vh;
-    overflow:auto;
-    background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
-    border-radius:12px;
-    padding:22px;
-    box-shadow:0 20px 60px rgba(2,6,23,0.7);
-    border:1px solid rgba(255,255,255,0.03);
-  }
-  .modal h2{ margin:0 0 8px; color:var(--accent); font-size:20px; }
-  .modal .muted{ color:var(--muted); font-size:13px; }
-  .section{ padding:12px 0; border-top:1px dashed rgba(255,255,255,0.03); }
-  .section:first-of-type{ border-top:none; }
-
-  .disclaimer{ background:linear-gradient(90deg, rgba(217,184,92,0.02), rgba(255,255,255,0.00)); padding:12px; border-radius:8px; }
-  .install-opts{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px; }
-  pre.cmd{ background:var(--glass); padding:12px; border-radius:8px; color:#dfeaf6; overflow:auto; font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace; font-size:13px; line-height:1.5; }
-
-  .small{ font-size:13px; color:var(--muted); }
-
-  .action-row{ display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; }
-  .secondary{ background:transparent; color:var(--accent); border:1px solid rgba(217,184,92,0.12); padding:10px 14px; border-radius:8px; cursor:pointer; }
-  .positive{ background:linear-gradient(180deg,#89c67b,#5fa95a); color:#072012; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:700; }
-
-  footer.hint{ margin-top:18px; color:var(--muted); font-size:13px; text-align:center; }
-
-  /* responsive */
-  @media (max-width:720px){
-    h1{ font-size:36px; }
-    .install-opts{ grid-template-columns:1fr; }
-  }
+body {
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding-top: 10vh;
+}
+h1 {
+  font-size: 3em;
+  margin-bottom: 0.2em;
+}
+p {
+  font-size: 1.3em;
+  max-width: 700px;
+  margin: 0 auto 1em;
+}
+button {
+  background: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 25px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: 0.2s;
+}
+button:hover {
+  background: #ff5a4d;
+}
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.95);
+  z-index: 10;
+}
+.popup-content {
+  background: #222;
+  color: #fff;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 700px;
+  margin: 10% auto;
+  box-shadow: 0 0 20px #000;
+}
+.popup-content h2 {
+  font-size: 2em;
+}
+.popup-content p {
+  font-size: 1.1em;
+  margin-bottom: 1em;
+}
+.close-btn {
+  background: #444;
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.close-btn:hover {
+  background: #555;
+}
 </style>
 </head>
 <body>
-  <div class="wrap" role="main" aria-labelledby="title">
-    <header>
-      <h1 id="title">Fucking</h1>
-      <p class="lead">Make your terminal have self awareness and be a bit funnier, with a bit of stubbornness.</p>
-      <div class="cta">
-        <button id="openModal" class="btn">Get Fucking</button>
-      </div>
-    </header>
+<h1>Fucking</h1>
+<p>Make your terminal have self awareness and be a bit funnier, with a bit of stubbornness.</p>
+<button id="getBtn">Get Fucking</button>
 
-    <main>
-      <section class="section">
-        <h2 class="muted">What is this?</h2>
-        <p class="small">A tiny tool that sometimes refuses politely and sometimes helps by running commands you ask it to. It runs before the command, prints a short message, waits a bit, then executes.</p>
-      </section>
-
-      <section class="section">
-        <h2 class="muted">Usage</h2>
-        <p class="small"><strong>Just write <code>fucking</code> before any command</strong> and it will run it (or stubbornly refuse). Works with root too!</p>
-        <pre class="cmd"># example
-fucking echo "hello world"
-# if it refuses it'll say "No." and exit 0</pre>
-      </section>
-
-      <footer class="hint">You can place the .deb inside a <code>latest/</code> folder next to this page and the installer button will try to find it automatically.</footer>
-    </main>
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <h2>Hey! Before you install...</h2>
+    <h3>A quick disclaimer:</h3>
+    <p>This app is not intended to be rude, harmful, or verbally abusive in any way. If you are sensitive to vulgar or profane words (swearing, cursing, etc) do not install this app. We made sure that absolutely no part of this is racial, sexist, homophobic, or discriminating in any other way (we aren't that mean XD). If you aren't sensitive to any of those things, then carry on!</p>
+    <h3>How to install:</h3>
+    <p><b>Option 1 (Terminal):</b><br>Download the latest <code>.deb</code> file from the <code>latest/</code> folder and run:<br><code>sudo apt install ./latest/fucking.deb</code></p>
+    <p><b>Option 2 (GUI):</b><br>Just double-click the <code>.deb</code> file and use your installer app. It will install Python 3 if needed automatically.</p>
+    <h3>How to use:</h3>
+    <p>Just type <code>fucking</code> before any command! Works with root too! :D</p>
+    <button id="installBtn">Actually get fucking :D</button>
+    <div class="close-btn" id="closeBtn">Close</div>
   </div>
-
-  <!-- Modal -->
-  <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal" role="document">
-      <h2>Hey! Before you install...</h2>
-      <div class="section">
-        <div class="disclaimer">
-          <strong>A quick disclaimer:</strong>
-          <p class="muted" style="margin-top:8px;">
-            This app is not intended to be rude, harmful, or verbally abusive in any way. If you are sensitive to vulgar or profane words (swearing, cursing, etc) do not install this app. We made sure that absolutely no part of this is racial, sexist, homophobic, or discriminating in any other way (we aren't that mean XD). If you aren't sensitive to any of those things, then carry on!
-          </p>
-        </div>
-      </div>
-
-      <div class="section">
-        <h3 style="margin:0 0 8px;">Install (Linux)</h3>
-        <p class="small">Two quick options. The package method will download the .deb found in <code>./latest/</code> (if available). If python or pip are missing, the installer package attempts to install them during package install.</p>
-
-        <div class="install-opts" aria-hidden="false">
-          <div>
-            <strong>Terminal (quick):</strong>
-            <p class="small">Download and install the .deb (if your browser/host disallows auto-download, use the manual link below).</p>
-            <pre class="cmd" id="cmdTerminal"># if you host this site at https://example.com
-wget -O /tmp/fucking.deb https://example.com/latest/NAME_OF_DEB.deb
-sudo dpkg -i /tmp/fucking.deb
-# if dependencies missing:
-sudo apt-get install -f
-</pre>
-            <p class="small">If you host on GitHub Pages and the deb is at <code>latest/fucking_1.0_all.deb</code> then the first line becomes:
-<code>wget -O /tmp/fucking.deb https://yourusername.github.io/REPO/latest/fucking_1.0_all.deb</code></p>
-          </div>
-
-          <div>
-            <strong>Installer (one-click):</strong>
-            <p class="small">Click the installer below — the page will try to find a .deb inside <code>./latest/</code> and download it for you.</p>
-            <div class="action-row">
-              <button id="tryInstall" class="positive">Actually get fucking :D</button>
-              <button id="openLatest" class="secondary">Open ./latest/ folder</button>
-            </div>
-            <p id="installStatus" class="small" style="margin-top:10px; color:var(--muted);"></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <h3 style="margin:0 0 8px;">How to use</h3>
-        <p class="small">Once installed, open any terminal and prefix a command with <code>fucking</code>. Works as your user or as root. Example:</p>
-        <pre class="cmd">fucking apt update
-fucking echo "I said so!"</pre>
-      </div>
-
-      <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:10px;">
-        <button id="cancelModal" class="secondary">Close</button>
-      </div>
-    </div>
-  </div>
+</div>
 
 <script>
-(function(){
-  const openBtn = document.getElementById('openModal');
-  const modal = document.getElementById('modalBackdrop');
-  const cancel = document.getElementById('cancelModal');
-  const tryInstall = document.getElementById('tryInstall');
-  const openLatest = document.getElementById('openLatest');
-  const installStatus = document.getElementById('installStatus');
-  const cmdTerminal = document.getElementById('cmdTerminal');
-
-  function showModal(){
-    modal.style.display = 'flex';
-    modal.setAttribute('aria-hidden','false');
-  }
-  function hideModal(){
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden','true');
-    installStatus.textContent = '';
-  }
-
-  openBtn.addEventListener('click', showModal);
-  cancel.addEventListener('click', hideModal);
-  modal.addEventListener('click', function(e){
-    if(e.target === modal) hideModal();
-  });
-
-  // Utility: try to find .deb file(s) in ./latest/ by fetching the folder listing
-  async function findDebInLatest(){
-    installStatus.textContent = 'Looking for a .deb in ./latest/ ...';
-    try {
-      const resp = await fetch('./latest/');
-      if (!resp.ok) {
-        throw new Error('Directory fetch failed: ' + resp.status);
-      }
-      const text = await resp.text();
-      // parse for hrefs ending in .deb
-      const hrefRegex = /href=["']?([^"'>\s]+\.deb)["']?/gi;
-      const matches = [];
-      let m;
-      while ((m = hrefRegex.exec(text)) !== null) {
-        let href = m[1];
-        // normalize relative hrefs
-        if (!href.startsWith('http') && !href.startsWith('/')) {
-          // prefix with ./latest/
-          href = './latest/' + href.replace(/^(\.\/)?/, '');
-        }
-        matches.push(href);
-      }
-      // If none found, also try to find links that contain .deb anywhere
-      if(matches.length === 0){
-        const otherRegex = /["']([^"']+\.deb)["']/gi;
-        while ((m = otherRegex.exec(text)) !== null) {
-          let href = m[1];
-          if (!href.startsWith('http') && !href.startsWith('/')) href = './latest/' + href.replace(/^(\.\/)?/, '');
-          matches.push(href);
-        }
-      }
-      return matches;
-    } catch (err) {
-      // fetch could fail due to 403/404 or directory listing disabled
-      console.debug('findDebInLatest error', err);
-      return [];
-    }
-  }
-
-  // Click handler for "Actually get fucking :D"
-  tryInstall.addEventListener('click', async function(){
-    installStatus.style.color = 'var(--muted)';
-    installStatus.textContent = 'Searching for installer in ./latest/ ...';
-    tryInstall.disabled = true;
-    const debs = await findDebInLatest();
-    if(debs.length > 0){
-      // pick the first found .deb
-      const debUrl = debs[0];
-      installStatus.textContent = 'Found package: ' + debUrl + ' — starting download...';
-      // create hidden link and click it to download
-      const a = document.createElement('a');
-      a.href = debUrl;
-      a.download = '';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      // show thanks message
-      setTimeout(() => {
-        installStatus.style.color = '#b8f2c7';
-        installStatus.textContent = 'Thanks for installing :D';
-        tryInstall.disabled = false;
-      }, 800);
-    } else {
-      installStatus.style.color = 'var(--muted)';
-      installStatus.innerHTML = 'No .deb file could be discovered in <code>./latest/</code>. If you placed a .deb there, your hosting may block directory listings (common on GitHub Pages).<br><br>Fallback options:<ul><li>Open the <code>latest/</code> folder and click the .deb manually: <button id="openLatestInline" class="secondary">Open ./latest/</button></li><li>Or use the terminal command shown above, replacing <code>NAME_OF_DEB.deb</code> with the actual filename.</li></ul>';
-      // attach handler for the inline open button
-      document.getElementById('openLatestInline').addEventListener('click', function(){
-        window.location.href = './latest/';
-      }, {once:true});
-      tryInstall.disabled = false;
-    }
-  });
-
-  // openLatest opens the folder in same window
-  openLatest.addEventListener('click', function(){
-    window.location.href = './latest/';
-  });
-
-  // Auto-fill the terminal example with best-effort URL if the page seems to be on github.io
-  (function maybeFillTerminal(){
-    const origin = location.origin;
-    const path = location.pathname;
-    // If this looks like a GitHub Pages URL (username.github.io or github.io), attempt to propose a path
-    if(origin.includes('github.io')) {
-      // assume repo is at path like /REPO/ or / (user page)
-      const base = origin + path.replace(/\/index\.html$/, '').replace(/\/$/, '/');
-      // set example line
-      const sample = `# example for GitHub Pages hosting (adjust username/repo)
-wget -O /tmp/fucking.deb ${base}latest/NAME_OF_DEB.deb
-sudo dpkg -i /tmp/fucking.deb
-# fix deps if needed
-sudo apt-get install -f`;
-      cmdTerminal.textContent = sample;
-    }
-  })();
-
-})();
+const popup = document.getElementById("popup");
+document.getElementById("getBtn").onclick = () => popup.style.display = "block";
+document.getElementById("closeBtn").onclick = () => popup.style.display = "none";
+document.getElementById("installBtn").onclick = () => {
+  alert("Thanks for installing :D");
+  window.location.href = "latest/fucking.deb";
+};
 </script>
 </body>
 </html>
